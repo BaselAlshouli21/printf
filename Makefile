@@ -1,7 +1,7 @@
 MAKEFLAGS += --no-print-directory
 
 CC = cc
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 NAME = printf
 OBJ_DIR = obj
 
@@ -9,6 +9,10 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRCS = ft_printf.c \
+	ft_parser.c \
+	ft_parser_utils.c \
+	ft_renderer.c \
+	ft_renderer_utils.c \
 	main.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))

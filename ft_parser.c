@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 10:12:44 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/26 11:28:15 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/26 12:04:31 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	parse_width(t_data *data)
 {
 	int	width;
 
-	width = parse_atoi(&data);
+	width = parse_atoi(data);
 	data->format.width_value = width;
 }
 
@@ -45,7 +45,7 @@ static void	parse_precision(t_data *data)
 {
 	int	precision;
 
-	precision = parse_atoi(&data);
+	precision = parse_atoi(data);
 	data->format.precision_value = precision;
 }
 
@@ -53,10 +53,10 @@ int	parse_format(t_data *data)
 {
 	ft_memset(&data->format, 0, sizeof(t_format));
 	data->format.precision_value = -1;
-	parse_flags(&data);
-	parse_width(&data);
+	parse_flags(data);
+	parse_width(data);
 	if (*data->s == '.' && *(++data->s))
-		parse_precision(&data);
+		parse_precision(data);
 	if (!in(SPECIFIERS, *data->s))
 		return (PARSE_ERROR);
 	else

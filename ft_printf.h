@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:11:59 by basil42           #+#    #+#             */
-/*   Updated: 2026/10/26 11:19:46 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/26 12:03:33 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
+# include <stdio.h>
 # include "libft/libft.h"
 
 # define BUFFER_SIZE 4096
@@ -86,5 +87,11 @@ int	parse_format(t_data *data);
 // parser utils
 int	in(const char *str, int c);
 int	parse_atoi(t_data *data);
+
+// renderer
+void	render_format(t_data *data);
+
+// DELETE LATER
+void	print_struct(t_data *data);
 
 #endif

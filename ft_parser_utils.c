@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 10:13:35 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/26 11:28:53 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/26 12:11:22 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,11 @@ int	in(const char *str, int c)
 int	parse_atoi(t_data *data)
 {
 	int	num;
-	int	iter;
 
 	num = 0;
-	iter = 0;
 	while (ft_isdigit(*data->s))
 	{
-		num += (iter * 10);
+		num *= 10;
 		num += *data->s - '0';
 		data->s++;
 	}
