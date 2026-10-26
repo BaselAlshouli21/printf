@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 10:12:44 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/26 12:04:31 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/26 16:40:02 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,9 @@ int	parse_format(t_data *data)
 			data->format.upper_hexa = 1;
 		data->format.base = BASE_16;
 	}
+	if (data->format.precision_value >= 0 && data->format.zero_padding)
+		data->format.zero_padding = 0;
+	if (data->format.space && data->format.plus)
+		data->format.space = 0;
 	return (OK);
 }

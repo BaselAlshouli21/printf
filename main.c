@@ -6,14 +6,16 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/25 17:54:14 by basil42           #+#    #+#             */
-/*   Updated: 2026/10/26 12:17:19 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/26 18:12:59 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "limits.h"
 
 int	main()
 {
-	ft_printf("123 %000000---### -+12.12p", 123);
+	//ft_printf("123 %000000---### -+12.12p", 123);
+	//ft_printf("[%12c]", 'h');
+	//ft_printf("[%-10s]", "hello");
+	printf("original: [%+-12.6d]", -123);
 }

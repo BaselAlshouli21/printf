@@ -6,30 +6,59 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:56:57 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/26 12:16:44 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/26 17:01:11 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_struct(t_data *data)
+size_t	num_size(long num)
 {
-    printf("s: %s\n", data->s);
-    printf("%s", "the combination of flags, width, and precision: ");
-    if (data->format.hash)
-    	printf("%s", "[#]");
-    if (data->format.left_justified)
-    	printf("%s", "[-]");
-    if (data->format.plus)
-    	printf("%s", "[+]");
-    if (data->format.space)
-    	printf("%s", "[ ]");
-    if (data->format.zero_padding)
-    	printf("%s", "[0]");
-    if (data->format.width_value)
-    	printf("\nWidth: %d", data->format.width_value);
-    if (data->format.width_value >= 0)
-    	printf("\nPrecision: .%d", data->format.precision_value);
-    if (in("iduxXp", data->format.specifier))
-    	printf("\nBase: %d", data->format.base);
+	size_t	n;
+	
+	n = 0;
+	if (num < 0)
+	{
+		if (num == -2147483648)
+			return (10);
+		num *= -1;
+	}
+	while (num > 0)
+	{
+		n += 1;
+		num /= 10;
+	}
+	return (n);
+}
+
+void	insert_buff(t_data *data, char *str)
+{
+	while (*str)
+	{
+		data->buff[data->buff_idx++] = *str++;
+	}
+}
+
+void	justify(t_data *data, size_t len)
+{
+	if ((size_t)data->format.width_value <= len)
+	{
+		return ;
+	}
+	while ((size_t)data->format.width_value > len)
+	{
+		data->format.width_value--;
+		data->buff[data->buff_idx++] = ' ';
+	}
+}
+
+char *itoa_base(int	num, t_base base)
+{
+	char	*str;
+	size_t	len;
+	
+	len = num_size(num);
+	str = malloc(num_size(num) + 1);
+	if (!str)
+		return (NULL);
 }

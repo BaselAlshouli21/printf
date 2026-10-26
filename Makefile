@@ -9,10 +9,12 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRCS = ft_printf.c \
+	ft_printf_utils.c \
 	ft_parser.c \
 	ft_parser_utils.c \
 	ft_renderer.c \
 	ft_renderer_utils.c \
+	testing_func.c \
 	main.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))
