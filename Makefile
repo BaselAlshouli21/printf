@@ -1,5 +1,7 @@
+MAKEFLAGS += --no-print-directory
+
 CC = cc
-FLAGS =
+FLAGS = -Wall -Werror -Wextra
 NAME = printf
 OBJ_DIR = obj
 
@@ -10,8 +12,6 @@ SRCS = ft_printf.c \
 	main.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))
-
-MAKEFLAGS += --no-print-directory
 
 all: $(NAME)
 

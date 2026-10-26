@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
+/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:11:15 by basil42           #+#    #+#             */
-/*   Updated: 2026/10/26 01:52:39 by basil42          ###   ########.fr       */
+/*   Updated: 2026/10/26 10:05:58 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_printf(const char *str, ...)
 		return (-1);
 	while (*data.s)
 	{
-		if (*(data.s) == "%" & *(++data.s))
+		if (*(data.s) == '%' & *(++data.s))
 		{
 			if (parse_format(&data))
 				return (PARSE_ERROR);

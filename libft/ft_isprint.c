@@ -6,9 +6,11 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 18:29:29 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/05 16:16:24 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/10 13:55:58 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_isprint(int c)
 {

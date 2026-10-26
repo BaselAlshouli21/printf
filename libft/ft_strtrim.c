@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 13:56:21 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/05 16:56:06 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/10 14:35:19 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	if (!str)
 		return (NULL);
 	ft_memcpy(str, s1 + start, end - start);
-	str[end - start] = '\0';
+	str[end - start] = 0;
 	return (str);
 }

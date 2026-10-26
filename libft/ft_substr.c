@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/28 14:23:49 by balshoul          #+#    #+#             */
-/*   Updated: 2026/09/30 17:58:43 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/10 14:33:15 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		substr[i] = s[start + i];
 		i++;
 	}
-	substr[i] = '\0';
+	substr[i] = 0;
 	return (substr);
 }
