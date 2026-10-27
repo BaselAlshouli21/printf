@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 10:12:44 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/26 16:40:02 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/27 16:52:46 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ static void	parse_precision(t_data *data)
 	data->format.precision_value = precision;
 }
 
+static int parse_sepecifier(t_data *data)
+{
+	if (!in(SPECIFIERS, *data->s))
+		return (PARSE_ERROR);
+	else if (*data->s == '%')
+	{
+		data->format.specifier = '%';
+		data->s++;
+	}
+	else
+		data->format.specifier = *data->s++;
+	return (OK);
+}
+
 int	parse_format(t_data *data)
 {
 	ft_memset(&data->format, 0, sizeof(t_format));
@@ -57,10 +71,8 @@ int	parse_format(t_data *data)
 	parse_width(data);
 	if (*data->s == '.' && *(++data->s))
 		parse_precision(data);
-	if (!in(SPECIFIERS, *data->s))
+	if (parse_sepecifier(data))
 		return (PARSE_ERROR);
-	else
-		data->format.specifier = *data->s++;
 	if (in("diu", data->format.specifier))
 		data->format.base = BASE_10;
 	else if (in("xXp", data->format.specifier))

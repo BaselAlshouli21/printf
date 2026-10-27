@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:34:49 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/27 16:27:42 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/27 16:49:53 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,15 @@ void	render_string(t_data *data)
 void	render_format(t_data *data)
 {
     if (in("c%%", data->format.specifier))
+	{
+		if (data->format.specifier == '%')
+		{
+			insert_buff(data, "%%", 1);
+			printf("my_printf: [%s]\n", data->buff); // DELETE LATER
+			return ;
+		}
     	render_char(data);
+	}
 	else if (data->format.specifier == 's')
     	render_string(data);
     // else if (in("diu", data->format.specifier))
