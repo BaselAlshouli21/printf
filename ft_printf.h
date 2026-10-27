@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:11:59 by basil42           #+#    #+#             */
-/*   Updated: 2026/10/26 20:07:37 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/27 16:16:52 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ typedef struct s_data
 }				t_data;
 
 // printf.c
-int	ft_printf(const char *format, ...);
+int	ft_printf(const char *str, ...);
+int	init_data(t_data *data, const char *str);
 
 // parser
 int	parse_format(t_data *data);
@@ -93,8 +94,8 @@ void	render_format(t_data *data);
 void	render_char(t_data *data);
 
 // renderer utils
-void	insert_buff(t_data *data, char *str);
-void	justify(t_data *data, size_t len);
+void	insert_buff(t_data *data, const char *str, size_t len);
+void	justify(t_data *data, const char *str, size_t len);
 size_t	num_size(long num);
 
 // DELETE LATER

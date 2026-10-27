@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:34:49 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/26 20:07:13 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/27 16:27:42 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,7 @@ void	render_char(t_data *data)
 	char	ch;
 
 	ch = va_arg(data->ap, int);
-	data->format.width_value--;
-	if (data->format.left_justified)
-	{
-		insert_buff(data, &ch);
-		justify(data, 1);
-	}
-	else
-	{
-		justify(data, 1);
-		insert_buff(data, &ch);
-	}
+	justify(data, &ch, 1);
 	printf("my_printf: [%s]\n", data->buff); // DELETE LATER
 }
 
@@ -37,27 +27,23 @@ void	render_string(t_data *data)
 	size_t		str_len;
 
 	str = va_arg(data->ap, char *);
-	str_len = ft_strlen(str);
-	if (data->format.left_justified)
-	{
-		insert_buff(data, str);
-		justify(data, str_len);
-	}
+	if (data->format.precision_value >= 0)
+		justify(data, str, data->format.precision_value);
 	else
 	{
-		justify(data, ft_strlen(str));
-		insert_buff(data, str);
+		str_len = ft_strlen(str);
+		justify(data, str, str_len);
 	}
-	printf("my_printf: [%s]\n", data->buff);
+	printf("my_printf: [%s]\n", data->buff); // DELETE LATER
 }
 
-void	render_decimal(t_data *data)
-{
-	long	n;
+// void	render_decimal(t_data *data)
+// {
+// 	long	n;
 
-	n = (long)va_arg(data->ap, int);
-	n_len = 
-}
+// 	n = (long)va_arg(data->ap, int);
+// 	n_len = 
+// }
 
 void	render_format(t_data *data)
 {
@@ -65,13 +51,13 @@ void	render_format(t_data *data)
     	render_char(data);
 	else if (data->format.specifier == 's')
     	render_string(data);
-    else if (in("diu", data->format.specifier))
-	{
-		if (data->format.specifier == 'u')
-			render_unsigned(data);
-		else
-     		render_decimal(data);
-	}
+    // else if (in("diu", data->format.specifier))
+	// {
+	// 	if (data->format.specifier == 'u')
+	// 		render_unsigned(data);
+	// 	else
+    //  		render_decimal(data);
+	// }
     // else
     // 	render_hexa(data);
 }
