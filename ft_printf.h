@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:11:59 by basil42           #+#    #+#             */
-/*   Updated: 2026/10/27 16:41:17 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/29 02:13:11 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@
 # define BUFFER_SIZE 4096
 
 # define FLAGS "# 0+-"
-# define NUMBERS "0123456789abcdef"
+# define NUMS_10 "0123456789"
+# define LOWER_16 "0123456789abcdef"
+# define UPPER_16 "0123456789ABCDEF"
 # define SPECIFIERS "cspdiuxX%%"
 
 typedef enum e_error
 {
 	OK = 0,
+	RENDER_ERROR = -100,
 	MALLOC_ERROR = -10,
 	PARSE_ERROR = -1,
 }			t_error;
@@ -96,7 +99,8 @@ void	render_char(t_data *data);
 // renderer utils
 void	insert_buff(t_data *data, const char *str, size_t len);
 void	justify(t_data *data, const char *str, size_t len);
-size_t	num_size(long num);
+char	*itoa_base(unsigned long n, const char *digits);
+size_t	num_size(long num, t_base base);
 
 // DELETE LATER
 void	print_struct(t_data *data);

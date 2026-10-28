@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_renderer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:34:49 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/27 16:49:53 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/29 02:30:18 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,29 @@ void	render_string(t_data *data)
 	printf("my_printf: [%s]\n", data->buff); // DELETE LATER
 }
 
-// void	render_decimal(t_data *data)
-// {
-// 	long	n;
+void	render_precision(t_data *data)
+{
+	(void)data->s;
+	return ;
+}
 
-// 	n = (long)va_arg(data->ap, int);
-// 	n_len = 
-// }
+void	render_decimal(t_data *data)
+{
+	size_t	len;
+	long	n;
+	char	*str;
+
+	n = va_arg(data->ap, unsigned int);
+	str = itoa_base(n, NUMS_10);
+	if (data->format.left_justified) // TODO RENDER DECIMAL WITH FLAGS
+	{
+		return ;
+	}
+	else
+	{
+
+	}
+}
 
 void	render_format(t_data *data)
 {
@@ -55,17 +71,10 @@ void	render_format(t_data *data)
 			printf("my_printf: [%s]\n", data->buff); // DELETE LATER
 			return ;
 		}
-    	render_char(data);
+		render_char(data);
 	}
 	else if (data->format.specifier == 's')
     	render_string(data);
-    // else if (in("diu", data->format.specifier))
-	// {
-	// 	if (data->format.specifier == 'u')
-	// 		render_unsigned(data);
-	// 	else
-    //  		render_decimal(data);
-	// }
-    // else
-    // 	render_hexa(data);
+    else if (in("diu", data->format.specifier))
+		render_decimal(data);
 }

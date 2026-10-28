@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 10:13:35 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/26 12:11:22 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/28 22:35:24 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	in(const char *str, int c)
 {
-	unsigned char	ch;
-
-	ch = c;
 	while (*str)
 	{
 		if (*str == c)
