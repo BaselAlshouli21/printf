@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_renderer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
+/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:34:49 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/29 02:30:18 by basil42          ###   ########.fr       */
+/*   Updated: 2026/10/29 23:08:30 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,16 @@ void	render_char(t_data *data)
 	char	ch;
 
 	ch = va_arg(data->ap, int);
-	justify(data, &ch, 1);
+	if (data->format.left_justified)
+	{
+		insert_buff(data, &ch, 1);
+		justify(data, 1);
+	}
+	else
+	{
+		justify(data, 1);
+		insert_buff(data, &ch, 1);
+	}
 	printf("my_printf: [%s]\n", data->buff); // DELETE LATER
 }
 
@@ -27,8 +36,15 @@ void	render_string(t_data *data)
 	size_t		str_len;
 
 	str = va_arg(data->ap, char *);
-	if (data->format.precision_value >= 0)
-		justify(data, str, data->format.precision_value);
+	str_len = ft_strlen(str);
+	if (data->format.left_justified)
+	{
+		if (data->format.precision_value >= 0)
+		{
+			insert_buff(data, str, data->format.precision_value);
+			justify(data, str, );
+		}
+	}
 	else
 	{
 		str_len = ft_strlen(str);
@@ -37,33 +53,47 @@ void	render_string(t_data *data)
 	printf("my_printf: [%s]\n", data->buff); // DELETE LATER
 }
 
-void	render_precision(t_data *data)
-{
-	(void)data->s;
-	return ;
-}
+// void	render_precision(t_data *data, size_t len)
+// {
+// 	if (data->format.hash && data->format.upper_hexa)
+// 	{
+// 		insert_buff(data, "0X", 2);
+// 		data->format.width_value -= 2;
+// 	}
+// 	else if (data->format.hash)
+// 	{
+// 		insert_buff(data, "0x", 2);
+// 		data->format.width_value -= 2;
+// 	}
+// 	if (data->format.precision_value < 0)
+// 		return ;
+// 	while (data->format.precision_value-- > len)
+// 		insert_buff(data, "0", 1);
+// }
 
-void	render_decimal(t_data *data)
-{
-	size_t	len;
-	long	n;
-	char	*str;
+// void	render_decimal(t_data *data)
+// {
+// 	size_t	len;
+// 	long	n;
+// 	char	*str;
 
-	n = va_arg(data->ap, unsigned int);
-	str = itoa_base(n, NUMS_10);
-	if (data->format.left_justified) // TODO RENDER DECIMAL WITH FLAGS
-	{
-		return ;
-	}
-	else
-	{
-
-	}
-}
+// 	n = va_arg(data->ap, unsigned int);
+// 	str = itoa_base(n, NUMS_10);
+// 	len = ft_strlen(str);
+// 	if (data->format.left_justified)
+// 	{
+// 		render_precision(data, len);
+// 		justify(data, len);
+// 	}
+// 	else
+// 	{
+// 		just
+// 	}
+// }
 
 void	render_format(t_data *data)
 {
-    if (in("c%%", data->format.specifier))
+    if (in("%%c", data->format.specifier))
 	{
 		if (data->format.specifier == '%')
 		{
@@ -73,8 +103,8 @@ void	render_format(t_data *data)
 		}
 		render_char(data);
 	}
-	else if (data->format.specifier == 's')
-    	render_string(data);
-    else if (in("diu", data->format.specifier))
-		render_decimal(data);
+	// else if (data->format.specifier == 's')
+    // 	render_string(data);
+    // else if (in("diu", data->format.specifier))
+	// 	render_decimal(data);
 }

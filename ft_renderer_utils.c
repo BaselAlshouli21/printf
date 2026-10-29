@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_renderer_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
+/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:56:57 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/29 02:13:26 by basil42          ###   ########.fr       */
+/*   Updated: 2026/10/29 23:19:33 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,43 +18,30 @@ void	insert_buff(t_data *data, const char *str, size_t len)
 		data->buff[data->buff_idx++] = *str++;
 }
 
-void	justify(t_data *data, const char *str, size_t len)
+void	justify(t_data *data, size_t len)
 {
 	size_t	width;
 
 	width = data->format.width_value;
 	if (width <= len)
 		return ;
-	if (data->format.left_justified)
-	{
-		insert_buff(data, str, len);
-		width -= len;
-		while (width-- > 0)
-			insert_buff(data, " ", 1);
-	}
-	else
-	{
-		while (width-- > len)
-			insert_buff(data, " ", 1);
-		insert_buff(data, str, len);
-	}
-	data->format.width_value -= width;
+	while ((size_t)data->format.width_value-- > len)
+		insert_buff(data, " ", 1);
 }
 
-
-static size_t	num_size(unsigned long n, t_base base)
+static size_t	num_size(unsigned long num, t_base base)
 {
 	size_t	n;
 
 	n = 0;
-	if (n <= 0)
+	if (num <= 0)
 		n = 1;
-	if (n < 0)
-		n *= -1;
-	while (n > 0)
+	if (num < 0)
+		num *= -1;
+	while (num > 0)
 	{
 		n += 1;
-		n /= base;
+		num /= base;
 	}
 	return (n);
 }

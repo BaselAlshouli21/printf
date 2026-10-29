@@ -6,13 +6,13 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:11:15 by basil42           #+#    #+#             */
-/*   Updated: 2026/10/27 16:22:34 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/29 23:11:33 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	init_data(t_data *data, const char *str)
+static int	init_data(t_data *data, const char *str)
 {
 	data->bytes_written = 0;
 	data->s = str;
@@ -38,6 +38,7 @@ int	ft_printf(const char *str, ...)
 			if (parse_format(&data))
 				return (PARSE_ERROR);
 			render_format(&data);
+			print_struct(&data);
 			//print_struct(&data);
 		}
 		//else
