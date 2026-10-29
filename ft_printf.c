@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:11:15 by basil42           #+#    #+#             */
-/*   Updated: 2026/10/29 23:11:33 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/30 00:05:52 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,10 @@ int	ft_printf(const char *str, ...)
 			if (parse_format(&data))
 				return (PARSE_ERROR);
 			render_format(&data);
-			print_struct(&data);
-			//print_struct(&data);
 		}
-		//else
-		//	write_buff(&data, *data.s);
-		data.s++;
+		else
+			write_buff(&data, data.s++, 1);
 	}
-	//flush_buff(&data);
 	free(data.buff);
 	va_end(data.ap);
 	return (data.bytes_written);

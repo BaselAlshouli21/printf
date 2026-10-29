@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:34:49 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/29 23:08:30 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/30 01:33:06 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,14 @@ void	render_char(t_data *data)
 	ch = va_arg(data->ap, int);
 	if (data->format.left_justified)
 	{
-		insert_buff(data, &ch, 1);
+		write_buff(data, &ch, 1);
 		justify(data, 1);
 	}
 	else
 	{
 		justify(data, 1);
-		insert_buff(data, &ch, 1);
+		write_buff(data, &ch, 1);
 	}
-	printf("my_printf: [%s]\n", data->buff); // DELETE LATER
 }
 
 void	render_string(t_data *data)
@@ -36,21 +35,20 @@ void	render_string(t_data *data)
 	size_t		str_len;
 
 	str = va_arg(data->ap, char *);
-	str_len = ft_strlen(str);
+	if (data->format.precision_value >= 0)
+		str_len = data->format.precision_value;
+	else
+		str_len = ft_strlen(str);
 	if (data->format.left_justified)
 	{
-		if (data->format.precision_value >= 0)
-		{
-			insert_buff(data, str, data->format.precision_value);
-			justify(data, str, );
-		}
+		write_buff(data, str, str_len);
+		justify(data, str_len);
 	}
 	else
 	{
-		str_len = ft_strlen(str);
-		justify(data, str, str_len);
+		justify(data, str_len);
+		write_buff(data, str, data->format.precision_value);
 	}
-	printf("my_printf: [%s]\n", data->buff); // DELETE LATER
 }
 
 // void	render_precision(t_data *data, size_t len)
@@ -97,14 +95,14 @@ void	render_format(t_data *data)
 	{
 		if (data->format.specifier == '%')
 		{
-			insert_buff(data, "%%", 1);
+			write_buff(data, "%%", 1);
 			printf("my_printf: [%s]\n", data->buff); // DELETE LATER
 			return ;
 		}
 		render_char(data);
 	}
-	// else if (data->format.specifier == 's')
-    // 	render_string(data);
+	else if (data->format.specifier == 's')
+    	render_string(data);
     // else if (in("diu", data->format.specifier))
 	// 	render_decimal(data);
 }

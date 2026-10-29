@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:11:59 by basil42           #+#    #+#             */
-/*   Updated: 2026/10/29 19:09:30 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/29 23:25:18 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	render_format(t_data *data);
 void	render_char(t_data *data);
 
 // renderer utils
-void	insert_buff(t_data *data, const char *str, size_t len);
+void	write_buff(t_data *data, const char *str, size_t len);
 void	justify(t_data *data, size_t len);
 char	*itoa_base(unsigned long n, const char *digits);
 
