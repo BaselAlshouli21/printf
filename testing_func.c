@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   testing_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 16:45:34 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/26 16:45:41 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/30 14:21:19 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	print_struct(t_data *data)
 	if (data->format.zero_padding)
 		printf("%s", "[0]");
 	if (data->format.width_value)
-		printf("\nWidth: %d", data->format.width_value);
-	if (data->format.width_value >= 0)
-		printf("\nPrecision: .%d", data->format.precision_value);
+		printf("\nWidth: %ld", data->format.width_value);
+	if (data->format.precision_value >= 0)
+		printf("\nPrecision: .%ld", data->format.precision_value);
 	if (in("iduxXp", data->format.specifier))
 		printf("\nBase: %d", data->format.base);
 }

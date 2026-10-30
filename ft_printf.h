@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:11:59 by basil42           #+#    #+#             */
-/*   Updated: 2026/10/29 23:25:18 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/30 14:18:54 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define LOWER_16 "0123456789abcdef"
 # define UPPER_16 "0123456789ABCDEF"
 # define SPECIFIERS "cspdiuxX%%"
+
+# define ZERO_PAD 1
+# define SPACE 0
 
 typedef enum e_error
 {
@@ -54,8 +57,8 @@ typedef struct s_format
 	char	specifier;
 
 	// with + precision
-	int		width_value;
-	int		precision_value;
+	size_t	width_value;
+	ssize_t	precision_value;
 
 	// Useful data
 	int		upper_hexa;
@@ -84,6 +87,9 @@ typedef struct s_data
 // printf.c
 int	ft_printf(const char *str, ...);
 
+// printf utils
+void	write_buff(t_data *data, const char *str, size_t len);
+
 // parser
 int	parse_format(t_data *data);
 
@@ -96,9 +102,10 @@ void	render_format(t_data *data);
 void	render_char(t_data *data);
 
 // renderer utils
-void	write_buff(t_data *data, const char *str, size_t len);
-void	justify(t_data *data, size_t len);
+void	render_sign(t_data *data, long n, int mode);
 char	*itoa_base(unsigned long n, const char *digits);
+void	justify(t_data *data, size_t len, int zero_pad);
+int		render_precision(t_data *data, size_t len);
 
 // DELETE LATER
 void	print_struct(t_data *data);

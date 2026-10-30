@@ -3,33 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_renderer_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:56:57 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/30 01:25:26 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/10/30 14:46:49 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	write_buff(t_data *data, const char *str, size_t len)
-{
-	while (*str && len-- > 0)
-		data->bytes_written += write(1, str++, 1);
-}
-
-void	justify(t_data *data, size_t len)
+void	justify(t_data *data, size_t len, int zero_pad)
 {
 	size_t	width;
+	char	c;
 
 	width = data->format.width_value;
+	if (zero_pad)
+		c = '0';
+	else
+		c = ' ';
 	if (width <= len)
 		return ;
 	while ((size_t)data->format.width_value-- > len)
-		write_buff(data, " ", 1);
+		write_buff(data, &c, 1);
 }
 
-static size_t	num_size(unsigned long num, t_base base)
+int	render_precision(t_data *data, size_t len)
+{
+	int i;
+
+	i = 0;
+	if (data->format.precision_value < 0)
+		return (i);
+	while (data->format.width_value-- >= len)
+	{
+		write_buff(data, "0", 1);
+		i++;
+	}
+	return (i);
+}
+
+void	render_sign(t_data *data, long n, int mode)
+{
+	if (mode == 0)
+		return ;
+	if (n >= 0)
+		write_buff(data, "+", 1);
+}
+
+static size_t	num_size(long num, t_base base)
 {
 	size_t	n;
 

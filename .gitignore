@@ -1,0 +1,14 @@
+#Tester
+/printfTester
+
+# Obj files
+/obj
+/libft/obj
+
+# Archived library
+libft/libft.a
+libftprintf.a
+
+# Main and executable
+main.c
+printf
