@@ -6,7 +6,7 @@
 /*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:11:59 by basil42           #+#    #+#             */
-/*   Updated: 2026/10/30 20:43:19 by basil42          ###   ########.fr       */
+/*   Updated: 2026/10/31 01:12:11 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,13 @@ int	parse_atoi(t_data *data);
 
 // renderer
 void	render_format(t_data *data);
-//void	render_char(t_data *data);
 
 // renderer utils
 size_t	num_size(t_data *data, unsigned long num, t_base base);
-void	justify(t_data *data, size_t len, int zero_pad);
 void	itoa_base(t_data *data, unsigned long n, const char *digits);
+
+// render flags
+void	render_pad(t_data *data, size_t len, int zero_pad);
 void	render_sign(t_data *data);
 int		render_precision(t_data *data, size_t len);
 
