@@ -40,6 +40,7 @@ clean:
 fclean: clean
 	@$(MAKE) -C $(LIBFT_DIR) fclean
 	rm -f $(NAME)
+	rm -f printf
 
 re: fclean
 	$(MAKE) all

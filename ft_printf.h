@@ -6,7 +6,7 @@
 /*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:11:59 by basil42           #+#    #+#             */
-/*   Updated: 2026/10/30 19:47:30 by basil42          ###   ########.fr       */
+/*   Updated: 2026/10/30 20:43:19 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ typedef struct s_format
 
 	// Useful data
 	int		upper_hexa;
+	int		is_neg;
 	t_base	base;
+	size_t	num_size;
 }				t_format;
 
 typedef struct s_data
@@ -78,10 +80,6 @@ typedef struct s_data
 
 	// the bytes that the printf has written
 	int			bytes_written;
-
-	// The Huge Buffer and it's cursor;
-	char		*buff;
-	int			buff_idx;
 }				t_data;
 
 // printf.c
@@ -102,9 +100,10 @@ void	render_format(t_data *data);
 //void	render_char(t_data *data);
 
 // renderer utils
-void	render_sign(t_data *data, long n, int mode);
+size_t	num_size(t_data *data, unsigned long num, t_base base);
 void	justify(t_data *data, size_t len, int zero_pad);
-int		itoa_base(unsigned long n, const char *digits);
+void	itoa_base(t_data *data, unsigned long n, const char *digits);
+void	render_sign(t_data *data);
 int		render_precision(t_data *data, size_t len);
 
 // DELETE LATER

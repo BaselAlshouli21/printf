@@ -6,7 +6,7 @@
 /*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:56:57 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/30 19:47:12 by basil42          ###   ########.fr       */
+/*   Updated: 2026/10/30 20:43:12 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,35 @@ int	render_precision(t_data *data, size_t len)
 	return (i);
 }
 
-void	render_sign(t_data *data, long n, int mode)
+void	render_sign(t_data *data)
 {
-	if (mode == 0)
-		return ;
-	if (n >= 0)
+	if (data->format.is_neg)
+		write_buff(data, "-", 1);
+	else if (data->format.plus && !data->format.is_neg)
 		write_buff(data, "+", 1);
 }
 
-size_t	itoa_base(t_data *data, unsigned long n, const char *digits)
+size_t	num_size(t_data *data, unsigned long num, t_base base)
+{
+	size_t	n;
+
+	n = 1;
+	while (num > 0)
+	{
+		n += 1;
+		num /= base;
+	}
+	data->format.num_size = n;
+	return(n);
+}
+
+void	itoa_base(t_data *data, unsigned long n, const char *digits)
 {
 	size_t	base;
-	size_t	len;
 
 	base = ft_strlen(digits);
-	len = 0;
 	if (n >= base)
-		len = itoa_base(data, n / base, digits);
+		itoa_base(data, n / base, digits);
+	data->format.num_size++;
 	write_buff(data, &digits[n % base], 1);
-	return (len);
 }
