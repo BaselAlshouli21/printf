@@ -6,7 +6,7 @@
 /*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:56:57 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/30 14:46:49 by basil42          ###   ########.fr       */
+/*   Updated: 2026/10/30 19:47:12 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,39 +51,15 @@ void	render_sign(t_data *data, long n, int mode)
 		write_buff(data, "+", 1);
 }
 
-static size_t	num_size(long num, t_base base)
-{
-	size_t	n;
-
-	n = 0;
-	if (num <= 0)
-		n = 1;
-	if (num < 0)
-		num *= -1;
-	while (num > 0)
-	{
-		n += 1;
-		num /= base;
-	}
-	return (n);
-}
-
-char	*itoa_base(unsigned long n, const char *digits)
+size_t	itoa_base(t_data *data, unsigned long n, const char *digits)
 {
 	size_t	base;
 	size_t	len;
-	char	*str;
 
 	base = ft_strlen(digits);
-	len = num_size(n, base);
-	str = malloc(len + 1);
-	if (!str)
-		return (NULL);
-	str[len] = '\0';
-	while (len--)
-	{
-		str[len] = digits[n % base];
-		n /= base;
-	}
-	return (str);
+	len = 0;
+	if (n >= base)
+		len = itoa_base(data, n / base, digits);
+	write_buff(data, &digits[n % base], 1);
+	return (len);
 }
