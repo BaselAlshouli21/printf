@@ -22,6 +22,8 @@ run: all
 
 all: $(NAME)
 
+bonus: all
+
 $(LIBFT):
 	@$(MAKE) -C $(LIBFT_DIR)
 

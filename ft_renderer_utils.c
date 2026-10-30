@@ -6,7 +6,7 @@
 /*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:56:57 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/30 20:43:12 by basil42          ###   ########.fr       */
+/*   Updated: 2026/10/31 00:42:51 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,15 @@ int	render_precision(t_data *data, size_t len)
 void	render_sign(t_data *data)
 {
 	if (data->format.is_neg)
+	{
 		write_buff(data, "-", 1);
+		data->format.width_value -= (data->format.width_value > 1);
+	}
 	else if (data->format.plus && !data->format.is_neg)
+	{
 		write_buff(data, "+", 1);
+		data->format.width_value -= (data->format.width_value > 1);
+	}
 }
 
 size_t	num_size(t_data *data, unsigned long num, t_base base)
@@ -56,7 +62,7 @@ size_t	num_size(t_data *data, unsigned long num, t_base base)
 	size_t	n;
 
 	n = 1;
-	while (num > 0)
+	while (num >= base)
 	{
 		n += 1;
 		num /= base;
@@ -72,6 +78,5 @@ void	itoa_base(t_data *data, unsigned long n, const char *digits)
 	base = ft_strlen(digits);
 	if (n >= base)
 		itoa_base(data, n / base, digits);
-	data->format.num_size++;
 	write_buff(data, &digits[n % base], 1);
 }
