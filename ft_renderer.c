@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_renderer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
+/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:34:49 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/31 01:28:13 by basil42          ###   ########.fr       */
+/*   Updated: 2026/11/02 00:14:17 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static void	render_string(t_data *data)
 
 static void	render_decimal(t_data *data, unsigned long num)
 {
-	size_t	spaces;
 	size_t	zeros;
 	size_t	len;
 
@@ -74,16 +73,16 @@ static void	render_decimal(t_data *data, unsigned long num)
 	else
 	{
 		zeros = (data->format.precision_value > (ssize_t)len) * (data->format.precision_value - len);
-		spaces = len + data->format.plus + zeros;
+		len += data->format.plus + zeros;
 		if (data->format.zero_padding)
 		{
 			render_sign(data);
-			render_pad(data, spaces, data->format.zero_padding);
+			render_pad(data, len, data->format.zero_padding);
 			itoa_base(data, num, NUMS_10);
 		}
 		else
 		{
-			render_pad(data, spaces, data->format.zero_padding);
+			render_pad(data, len, data->format.zero_padding);
 			render_sign(data);
 			itoa_base(data, num, NUMS_10);
 		}

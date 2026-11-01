@@ -1,6 +1,9 @@
 #Tester
 /printfTester
 
+# directories
+/.vscode
+
 # Obj files
 /obj
 /libft/obj

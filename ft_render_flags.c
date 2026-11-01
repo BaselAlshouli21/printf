@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_render_flags.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
+/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:55:14 by basil42           #+#    #+#             */
-/*   Updated: 2026/10/31 01:28:01 by basil42          ###   ########.fr       */
+/*   Updated: 2026/11/01 21:08:12 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void	render_pad(t_data *data, size_t len, int zero_pad)
 		c = ' ';
 	if (*width <= len)
 		return ;
-	while (*width-- > len)
+	while ((*width)-- > len)
 		write_buff(data, &c, 1);
 }
