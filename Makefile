@@ -14,7 +14,8 @@ SRCS = ft_printf.c \
 	ft_parser_utils.c \
 	ft_renderer.c \
 	ft_renderer_utils.c \
-	ft_render_flags.c
+	ft_render_flags.c \
+	ft_render_specifiers.c
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))
 

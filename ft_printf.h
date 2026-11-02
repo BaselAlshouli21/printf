@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:11:59 by basil42           #+#    #+#             */
-/*   Updated: 2026/11/01 20:05:33 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/11/02 20:23:52 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,23 @@ int	parse_atoi(t_data *data);
 void	render_format(t_data *data);
 
 // renderer utils
+unsigned long get_number(t_data *data);
+size_t	get_zeros(t_data *data, size_t len);
 size_t	num_size(t_data *data, unsigned long num, t_base base);
 void	itoa_base(t_data *data, unsigned long n, const char *digits);
+void	render_digits(t_data *data, unsigned long num, size_t len);
 
 // render flags
+size_t	sign_size(t_data *data);
+void	render_sign(t_data *data);
 void	render_pad(t_data *data, size_t len, int zero_pad);
 void	render_sign(t_data *data);
 int		render_precision(t_data *data, size_t len);
+
+// render specifiers
+void	render_char(t_data *data);
+void	render_string(t_data *data);
+void	render_decimal(t_data *data, unsigned long num);
 
 // DELETE LATER
 void	print_struct(t_data *data);

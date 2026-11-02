@@ -6,27 +6,25 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:55:14 by basil42           #+#    #+#             */
-/*   Updated: 2026/11/01 21:08:12 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/11/02 20:09:35 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+size_t	sign_size(t_data *data)
+{
+	return (data->format.is_neg || data->format.plus || data->format.space);
+}
+
 void	render_sign(t_data *data)
 {
-	size_t	*width;
-
-	width = &data->format.width_value;
 	if (data->format.is_neg)
-	{
 		write_buff(data, "-", 1);
-		*width -= *width > 1;
-	}
-	else if (data->format.plus && !data->format.is_neg)
-	{
+	else if (data->format.plus)
 		write_buff(data, "+", 1);
-		*width -= *width > 1;
-	}
+	else if (data->format.space)
+		write_buff(data, " ", 1);
 }
 
 int	render_precision(t_data *data, size_t len)
@@ -36,7 +34,7 @@ int	render_precision(t_data *data, size_t len)
 	i = 0;
 	if (data->format.precision_value < 0)
 		return (i);
-	while (data->format.width_value-- >= len)
+	while (data->format.precision_value-- > (ssize_t)len)
 	{
 		write_buff(data, "0", 1);
 		i++;
@@ -46,16 +44,16 @@ int	render_precision(t_data *data, size_t len)
 
 void	render_pad(t_data *data, size_t len, int zero_pad)
 {
-	size_t	*width;
+	size_t	width;
 	char	c;
 
-	width = &data->format.width_value;
+	width = data->format.width_value;
+	c = ' ';
 	if (zero_pad)
 		c = '0';
-	else
-		c = ' ';
-	if (*width <= len)
-		return ;
-	while ((*width)-- > len)
+	while (width > len)
+	{
 		write_buff(data, &c, 1);
+		width--;
+	}
 }
