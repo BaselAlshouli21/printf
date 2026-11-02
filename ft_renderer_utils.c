@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:56:57 by balshoul          #+#    #+#             */
-/*   Updated: 2026/11/02 20:16:16 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/11/02 23:39:03 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,18 @@ size_t	get_zeros(t_data *data, size_t len)
 	return (0);
 }
 
-void	render_digits(t_data *data, unsigned long num, size_t len)
+void	render_digits(t_data *data, unsigned long num, size_t len,
+		const char *base)
 {
 	render_precision(data, len);
 	if (len)
-		itoa_base(data, num, NUMS_10);
+		itoa_base(data, num, base);
 }
 
-unsigned long get_number(t_data *data)
+unsigned long	get_number(t_data *data)
 {
-	int val;
-	
+	int	val;
+
 	if (data->format.specifier == 'u')
 	{
 		data->format.plus = 0;
@@ -40,7 +41,7 @@ unsigned long get_number(t_data *data)
 	if (val < 0)
 	{
 		data->format.is_neg = 1;
-		return (-(long long )val);
+		return (-(long long)val);
 	}
 	return (val);
 }
@@ -56,12 +57,12 @@ size_t	num_size(t_data *data, unsigned long num, t_base base)
 		num /= base;
 	}
 	data->format.num_size = n;
-	return(n);
+	return (n);
 }
 
 void	itoa_base(t_data *data, unsigned long n, const char *digits)
 {
-	size_t	base;
+	size_t base;
 
 	base = ft_strlen(digits);
 	if (n >= base)

@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:11:59 by basil42           #+#    #+#             */
-/*   Updated: 2026/11/02 20:23:52 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/11/03 00:29:55 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void	write_buff(t_data *data, const char *str, size_t len);
 int	parse_format(t_data *data);
 
 // parser utils
+size_t	parse_atoi(t_data *data);
 int	in(const char *str, int c);
-int	parse_atoi(t_data *data);
 
 // renderer
 void	render_format(t_data *data);
@@ -103,7 +103,7 @@ unsigned long get_number(t_data *data);
 size_t	get_zeros(t_data *data, size_t len);
 size_t	num_size(t_data *data, unsigned long num, t_base base);
 void	itoa_base(t_data *data, unsigned long n, const char *digits);
-void	render_digits(t_data *data, unsigned long num, size_t len);
+void	render_digits(t_data *data, unsigned long num, size_t len, const char *base);
 
 // render flags
 size_t	sign_size(t_data *data);
@@ -113,9 +113,10 @@ void	render_sign(t_data *data);
 int		render_precision(t_data *data, size_t len);
 
 // render specifiers
-void	render_char(t_data *data);
-void	render_string(t_data *data);
 void	render_decimal(t_data *data, unsigned long num);
+void	render_string(t_data *data, int flag);
+void	render_char(t_data *data);
+void	render_hex(t_data *data);
 
 // DELETE LATER
 void	print_struct(t_data *data);
