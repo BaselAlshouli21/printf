@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
+/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 10:12:44 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/30 20:23:13 by basil42          ###   ########.fr       */
+/*   Updated: 2026/11/04 02:11:51 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	parse_precision(t_data *data)
 	data->format.precision_value = precision;
 }
 
-static int parse_sepecifier(t_data *data)
+static int	parse_sepecifier(t_data *data)
 {
 	if (!in(SPECIFIERS, *data->s))
 		return (PARSE_ERROR);

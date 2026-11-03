@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:55:14 by basil42           #+#    #+#             */
-/*   Updated: 2026/11/02 23:40:14 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/11/04 02:12:09 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int	render_precision(t_data *data, size_t len)
 
 void	render_pad(t_data *data, size_t len, int zero_pad)
 {
-	size_t width;
-	char c;
+	size_t	width;
+	char	c;
 
 	width = data->format.width_value;
 	c = ' ';

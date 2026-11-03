@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:34:49 by balshoul          #+#    #+#             */
-/*   Updated: 2026/11/03 01:57:28 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/11/04 02:12:38 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,37 @@
 
 static void	render_pointer(t_data *data)
 {
-	unsigned long p;
+	unsigned long long	p;
+	size_t				len;
+	void				*ptr;
 
 	p = va_arg(data->ap, unsigned long);
 	if (!p)
-		render_string(data, 0);
-	
-		
+	{
+		render_string(data, 1);
+		return ;
+	}
+	len = num_size(data, p, BASE_16);
+	if (data->format.left_justified)
+	{
+		render_sign(data);
+		render_digits(data, p, len, LOWER_16);
+		render_pad(data, len + sign_size(data), SPACE);
+	}
+	else
+	{
+		render_pad(data, len + sign_size(data), SPACE);
+		render_sign(data);
+		render_digits(data, p, len, LOWER_16);
+	}
 }
 
 void	render_format(t_data *data)
 {
-	char				c;
+	char	c;
 
 	c = data->format.specifier;
-    if (in("%%c", c))
+	if (in("%%c", c))
 	{
 		if (c == '%')
 		{
@@ -38,9 +54,11 @@ void	render_format(t_data *data)
 		render_char(data);
 	}
 	else if (c == 's')
-    	render_string(data, 1);
-    else if (in("diu", c))
+		render_string(data, 0);
+	else if (in("diu", c))
 		render_decimal(data, get_number(data));
 	else if (in("xX", c))
 		render_hex(data);
+	else if (in("p", c))
+		render_pointer(data);
 }
