@@ -6,62 +6,66 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:56:57 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/29 23:19:33 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/11/02 23:39:03 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	insert_buff(t_data *data, const char *str, size_t len)
+size_t	get_zeros(t_data *data, size_t len)
 {
-	while (*str && len-- > 0)
-		data->buff[data->buff_idx++] = *str++;
+	if (data->format.precision_value > (ssize_t)len)
+		return (data->format.precision_value - len);
+	return (0);
 }
 
-void	justify(t_data *data, size_t len)
+void	render_digits(t_data *data, unsigned long num, size_t len,
+		const char *base)
 {
-	size_t	width;
-
-	width = data->format.width_value;
-	if (width <= len)
-		return ;
-	while ((size_t)data->format.width_value-- > len)
-		insert_buff(data, " ", 1);
+	render_precision(data, len);
+	if (len)
+		itoa_base(data, num, base);
 }
 
-static size_t	num_size(unsigned long num, t_base base)
+unsigned long	get_number(t_data *data)
+{
+	int	val;
+
+	if (data->format.specifier == 'u')
+	{
+		data->format.plus = 0;
+		data->format.space = 0;
+		return (va_arg(data->ap, unsigned int));
+	}
+	val = va_arg(data->ap, int);
+	if (val < 0)
+	{
+		data->format.is_neg = 1;
+		return (-(long long)val);
+	}
+	return (val);
+}
+
+size_t	num_size(t_data *data, unsigned long num, t_base base)
 {
 	size_t	n;
 
-	n = 0;
-	if (num <= 0)
-		n = 1;
-	if (num < 0)
-		num *= -1;
-	while (num > 0)
+	n = 1;
+	while (num >= base)
 	{
 		n += 1;
 		num /= base;
 	}
+	data->format.num_size = n;
 	return (n);
 }
 
-char	*itoa_base(unsigned long n, const char *digits)
+void	itoa_base(t_data *data, unsigned long n, const char *digits)
 {
-	size_t	base;
-	size_t	len;
-	char	*str;
+	size_t base;
 
 	base = ft_strlen(digits);
-	len = num_size(n, base);
-	str = malloc(len + 1);
-	if (!str)
-		return (NULL);
-	str[len] = '\0';
-	while (len--)
-	{
-		str[len] = digits[n % base];
-		n /= base;
-	}
-	return (str);
+	if (n >= base)
+		itoa_base(data, n / base, digits);
+	write_buff(data, &digits[n % base], 1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
+/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 10:13:35 by balshoul          #+#    #+#             */
-/*   Updated: 2026/10/28 22:35:24 by basil42          ###   ########.fr       */
+/*   Updated: 2026/11/02 22:30:30 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ int	in(const char *str, int c)
 	return (0);
 }
 
-int	parse_atoi(t_data *data)
+size_t	parse_atoi(t_data *data)
 {
-	int	num;
+	size_t	num;
 
 	num = 0;
 	while (ft_isdigit(*data->s))
