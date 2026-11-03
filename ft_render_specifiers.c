@@ -6,15 +6,18 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 20:22:28 by balshoul          #+#    #+#             */
-/*   Updated: 2026/11/03 21:45:56 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/11/04 02:12:17 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 static void	render_right(t_data *data, unsigned long num, size_t len,
-		size_t total, const char *base)
+		const char *base)
 {
+	size_t	total;
+
+	total = len + get_zeros(data, len) + sign_size(data);
 	if (data->format.zero_padding)
 	{
 		render_sign(data);
@@ -45,7 +48,7 @@ void	render_decimal(t_data *data, unsigned long num)
 		render_pad(data, total, SPACE);
 	}
 	else
-		render_right(data, num, len, total, NUMS_10);
+		render_right(data, num, len, NUMS_10);
 }
 
 void	render_char(t_data *data)
@@ -65,15 +68,15 @@ void	render_char(t_data *data)
 	}
 }
 
-void	render_string(t_data *data, int p_null)
+void	render_string(t_data *data, int flag)
 {
 	const char	*str;
 	ssize_t		precision;
 	size_t		str_len;
 
 	precision = data->format.precision_value;
-	if (p_null)
-		str = "(nil)";
+	if (!flag)
+		str = "nill";
 	else
 		str = va_arg(data->ap, char *);
 	if (str == NULL)
@@ -95,18 +98,16 @@ void	render_string(t_data *data, int p_null)
 
 void	render_hex(t_data *data)
 {
-	unsigned int num;
-	size_t len;
-	size_t total;
-	char *base;
+	unsigned int	num;
+	size_t			len;
+	size_t			total;
+	char			*base;
 
 	if (data->format.upper_hexa)
 		base = UPPER_16;
 	else
 		base = LOWER_16;
 	num = va_arg(data->ap, unsigned int);
-	if (!num)
-		data->format.hash = 0;
 	len = num_size(data, num, BASE_16);
 	if (!num && data->format.precision_value == 0)
 		len = 0;
@@ -118,5 +119,5 @@ void	render_hex(t_data *data)
 		render_pad(data, total, SPACE);
 	}
 	else
-		render_right(data, num, len, total, base);
+		render_right(data, num, len, base);
 }

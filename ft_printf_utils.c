@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 17:06:36 by balshoul          #+#    #+#             */
-/*   Updated: 2026/11/03 22:09:45 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/11/04 02:11:58 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	fix_flags(t_data *data)
 	}
 	if (!in("diuxXs", f->specifier))
 		f->precision_value = -1;
-	if (f->precision_value >= 0 || f->left_justified
-		|| !in("diuxXp", f->specifier))
+	if (f->precision_value >= 0 || f->left_justified || !in("diuxXp",
+			f->specifier))
 		f->zero_padding = 0;
 	if (f->plus)
 		f->space = 0;

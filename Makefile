@@ -19,6 +19,9 @@ SRCS = ft_printf.c \
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))
 
+run: all
+	$(CC) main.c $(NAME) -o printf
+
 all: $(NAME)
 
 bonus: all

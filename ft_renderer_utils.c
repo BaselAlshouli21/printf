@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:56:57 by balshoul          #+#    #+#             */
-/*   Updated: 2026/11/02 23:39:03 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/11/04 01:50:01 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ size_t	num_size(t_data *data, unsigned long num, t_base base)
 
 void	itoa_base(t_data *data, unsigned long n, const char *digits)
 {
-	size_t base;
+	size_t	base;
 
 	base = ft_strlen(digits);
 	if (n >= base)

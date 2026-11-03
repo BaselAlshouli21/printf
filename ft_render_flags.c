@@ -6,7 +6,7 @@
 /*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:55:14 by basil42           #+#    #+#             */
-/*   Updated: 2026/11/03 18:56:55 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/11/04 02:12:09 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	sign_size(t_data *data)
 		len = 1;
 	else if (data->format.space)
 		len = 1;
-	else if (data->format.hash || data->format.specifier == 'p')
+	else if (data->format.hash)
 		len = 2;
 	return (len);
 }
@@ -38,7 +38,7 @@ void	render_sign(t_data *data)
 		write_buff(data, " ", 1);
 	else if (data->format.hash && data->format.upper_hexa)
 		write_buff(data, "0X", 2);
-	else if (data->format.hash || data->format.specifier == 'p')
+	else if (data->format.hash)
 		write_buff(data, "0x", 2);
 }
 
@@ -59,8 +59,8 @@ int	render_precision(t_data *data, size_t len)
 
 void	render_pad(t_data *data, size_t len, int zero_pad)
 {
-	size_t width;
-	char c;
+	size_t	width;
+	char	c;
 
 	width = data->format.width_value;
 	c = ' ';
