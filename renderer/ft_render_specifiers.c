@@ -6,7 +6,7 @@
 /*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 20:22:28 by balshoul          #+#    #+#             */
-/*   Updated: 2026/11/04 21:46:07 by basil42          ###   ########.fr       */
+/*   Updated: 2026/11/04 22:10:20 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,12 @@ void	render_hex(t_data *data)
 	size_t			total;
 	char			*base;
 
+	base = LOWER_16;
 	if (data->format.upper_hexa)
 		base = UPPER_16;
-	else
-		base = LOWER_16;
 	num = va_arg(data->ap, unsigned int);
+	if (!num)
+		data->format.hash = 0;
 	len = num_size(data, num, BASE_16);
 	if (!num && data->format.precision_value == 0)
 		len = 0;
