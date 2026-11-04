@@ -1,7 +1,7 @@
 MAKEFLAGS += --no-print-directory
 
 CC = cc
-FLAGS = -Wall -Werror -Wextra -g
+FLAGS = -Wall -Werror -Wextra -I.
 NAME = libftprintf.a
 OBJ_DIR = obj
 
@@ -9,18 +9,15 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 SRCS = ft_printf.c \
-	ft_printf_utils.c \
-	ft_parser.c \
-	ft_parser_utils.c \
-	ft_renderer.c \
-	ft_renderer_utils.c \
-	ft_render_flags.c \
-	ft_render_specifiers.c
+	utils/ft_printf_utils.c \
+	utils/ft_parser_utils.c \
+	utils/ft_renderer_utils.c \
+	renderer/ft_renderer.c \
+	renderer/ft_render_flags.c \
+	renderer/ft_render_specifiers.c \
+	parser/ft_parser.c \
 
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:%.c=%.o))
-
-run: all
-	$(CC) main.c $(NAME) -o printf
 
 all: $(NAME)
 
