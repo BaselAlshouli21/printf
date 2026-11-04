@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_render_flags.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 00:55:14 by basil42           #+#    #+#             */
-/*   Updated: 2026/11/04 02:12:09 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/11/04 21:48:32 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	sign_size(t_data *data)
 		len = 1;
 	else if (data->format.space)
 		len = 1;
-	else if (data->format.hash)
+	else if (data->format.hash || data->format.specifier == 'p')
 		len = 2;
 	return (len);
 }
@@ -38,7 +38,7 @@ void	render_sign(t_data *data)
 		write_buff(data, " ", 1);
 	else if (data->format.hash && data->format.upper_hexa)
 		write_buff(data, "0X", 2);
-	else if (data->format.hash)
+	else if (data->format.hash || data->format.specifier == 'p')
 		write_buff(data, "0x", 2);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_render_specifiers.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/02 20:22:28 by balshoul          #+#    #+#             */
-/*   Updated: 2026/11/04 02:12:17 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/11/04 21:46:07 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	render_string(t_data *data, int flag)
 
 	precision = data->format.precision_value;
 	if (!flag)
-		str = "nill";
+		str = "(nil)";
 	else
 		str = va_arg(data->ap, char *);
 	if (str == NULL)

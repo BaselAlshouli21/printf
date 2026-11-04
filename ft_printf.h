@@ -6,7 +6,7 @@
 /*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:11:59 by basil42           #+#    #+#             */
-/*   Updated: 2026/11/04 20:59:18 by basil42          ###   ########.fr       */
+/*   Updated: 2026/11/04 21:16:46 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 # define ZERO_PAD 1
 # define SPACE 0
+
+typedef unsigned long long	t_ull;
 
 typedef enum e_error
 {
