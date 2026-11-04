@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
+/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:11:59 by basil42           #+#    #+#             */
-/*   Updated: 2026/11/04 02:13:05 by balshoul         ###   ########.fr       */
+/*   Updated: 2026/11/04 20:59:18 by basil42          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,8 @@
 
 # include "libft/libft.h"
 # include <stdarg.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-# define BUFFER_SIZE 4096
 
 # define FLAGS "# 0+-"
 # define NUMS_10 "0123456789"
@@ -90,8 +87,8 @@ void			write_buff(t_data *data, const char *str, size_t len);
 void			fix_flags(t_data *data);
 
 // printf utils
-void	write_buff(t_data *data, const char *str, size_t len);
-void	fix_flags(t_data *data);
+void			write_buff(t_data *data, const char *str, size_t len);
+void			fix_flags(t_data *data);
 
 // parser
 int				parse_format(t_data *data);
@@ -123,8 +120,5 @@ void			render_decimal(t_data *data, unsigned long num);
 void			render_string(t_data *data, int p_null);
 void			render_char(t_data *data);
 void			render_hex(t_data *data);
-
-// DELETE LATER
-void			print_struct(t_data *data);
 
 #endif
