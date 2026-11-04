@@ -31,7 +31,7 @@ $(NAME): $(LIBFT) $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 $(OBJ_DIR)/%.o: %.c ft_printf.h
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(dir $@)
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
