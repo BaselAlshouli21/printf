@@ -177,7 +177,5 @@ All output goes through `write_buff`, which calls `write` with the exact length 
 ### Use of AI
 
 - **Debugging the integer renderer** (`d`, `i`, `u`): finding the reasons behind wrong padding, wrong sign handling.
-- **Reviewing edge cases**: understanding how edge cases how work with each flag.
+- **Reviewing edge cases**: listing how edge cases should behave
 - **Drafting this README.**
-
-The AI-suggested code was reviewed, adapted and tested by me against the real `printf`. No part of the project was accepted without being understood first.
