@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
+/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/24 00:11:59 by basil42           #+#    #+#             */
-/*   Updated: 2026/11/04 21:16:46 by basil42          ###   ########.fr       */
+/*   Updated: 2026/11/05 18:24:19 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libft/libft.h"
 # include <stdarg.h>
-# include <stdlib.h>
 # include <unistd.h>
 
 # define FLAGS "# 0+-"
@@ -33,7 +32,6 @@ typedef enum e_error
 {
 	OK = 0,
 	RENDER_ERROR = -100,
-	MALLOC_ERROR = -10,
 	PARSE_ERROR = -1,
 }				t_error;
 

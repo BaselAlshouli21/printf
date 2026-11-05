@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_renderer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: basil42 <basil42@student.42.fr>            +#+  +:+       +#+        */
+/*   By: balshoul <balshoul@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 11:34:49 by balshoul          #+#    #+#             */
-/*   Updated: 2026/11/04 21:22:38 by basil42          ###   ########.fr       */
+/*   Updated: 2026/11/05 16:42:04 by balshoul         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,26 @@ static void	render_pointer(t_data *data)
 {
 	void	*p;
 	size_t	len;
+	size_t	total;
 
 	p = va_arg(data->ap, void *);
 	if (!p)
 	{
+		data->format.precision_value = -1;
 		render_string(data, 0);
 		return ;
 	}
 	len = num_size(data, (t_ull)p, BASE_16);
+	total = len + sign_size(data) + get_zeros(data, len);
 	if (data->format.left_justified)
 	{
 		render_sign(data);
 		render_digits(data, (t_ull)p, len, LOWER_16);
-		render_pad(data, len + sign_size(data), SPACE);
+		render_pad(data, total, SPACE);
 	}
 	else
 	{
-		render_pad(data, len + sign_size(data), SPACE);
+		render_pad(data, total, SPACE);
 		render_sign(data);
 		render_digits(data, (t_ull)p, len, LOWER_16);
 	}
